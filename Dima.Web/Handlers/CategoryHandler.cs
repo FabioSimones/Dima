@@ -30,15 +30,15 @@ namespace Dima.Web.Handlers
         
 
         public async Task<Resposta<Category?>> GetByIdAsync(GetCategoryByIdRequest request)
-            => await _client.GetFromJsonAsync<Resposta<Category?>>($"v1/categories{request.Id}")
+            => await _client.GetFromJsonAsync<Resposta<Category?>>($"v1/categories/{request.Id}")
                 ?? new Resposta<Category?>(null, 400, "Não foi possível encontrar a categoria.");
-        
+
 
         public async Task<Resposta<Category?>> UpdateAsync(UpdateCategoryRequest request)
         {
-            var result = await _client.PutAsJsonAsync($"v1/categories{request.UserId}", request);
+            var result = await _client.PutAsJsonAsync($"v1/categories/{request.Id}", request);
             return await result.Content.ReadFromJsonAsync<Resposta<Category?>>()
-                ?? new Resposta<Category?>(null, 400, "Falha ao atualizar categoria");
+                   ?? new Resposta<Category?>(null, 400, "Falha ao atualizar a categoria");
         }
     }
 }
