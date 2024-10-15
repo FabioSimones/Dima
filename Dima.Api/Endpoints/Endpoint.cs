@@ -11,7 +11,7 @@ namespace Dima.Api.Endpoints
         public static void MapEndpoint(this WebApplication app)
         {
             var endpoints = app
-                .MapGroup("");
+           .MapGroup("");
 
             endpoints.MapGroup("/")
                 .WithTags("Health Check")
@@ -46,7 +46,7 @@ namespace Dima.Api.Endpoints
         }
 
         private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)
-            where TEndpoint : IEndpoint
+        where TEndpoint : IEndpoint
         {
             TEndpoint.Map(app);
             return app;

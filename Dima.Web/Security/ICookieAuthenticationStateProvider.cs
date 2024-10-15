@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 
-namespace Dima.Web.Security
+namespace Dima.Web.Security;
+
+public interface ICookieAuthenticationStateProvider
 {
-    public interface ICookieAuthenticationStateProvider
-    {
-        Task<bool> CheckAuthenticatedAsync();
-        Task<AuthenticationState> GetAuthenticationStateAsync();
-        void NotifyAuthenticationStateChanged();
-    }
+    Task<bool> CheckAuthenticatedAsync();
+    Task<AuthenticationState> GetAuthenticationStateAsync();
+    void NotifyAuthenticationStateChanged();
 }
