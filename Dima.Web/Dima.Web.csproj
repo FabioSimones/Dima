@@ -4,6 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -16,10 +17,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Dima.Core\Dima.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Pages\Transactions\" />
 	</ItemGroup>
 
 </Project>

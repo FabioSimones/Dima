@@ -15,7 +15,7 @@ namespace Dima.Web.Handlers
         {
             var result = await _client.PostAsJsonAsync("v1/transactions", request);
             return await result.Content.ReadFromJsonAsync<Resposta<Transaction?>>()
-                ?? new Resposta<Transaction?>(null, 400, "Falha ao criar transação.");
+                   ?? new Resposta<Transaction?>(null, 400, "Não foi possível criar sua transação");
         }
 
         public async Task<Resposta<Transaction?>> DeleteAsync(DeleteTransactionRequest request)
