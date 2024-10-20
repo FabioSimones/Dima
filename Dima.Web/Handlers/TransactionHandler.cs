@@ -26,10 +26,10 @@ namespace Dima.Web.Handlers
         }
 
         public async Task<Resposta<Transaction?>> GetByIdAsync(GetTransactionByIdRequest request) 
-            => await _client.GetFromJsonAsync<Resposta<Transaction?>>($"v1/categories{request.Id}")
-                ?? new Resposta<Transaction?>(null, 400, "Não foi possivel encontrar as categorias.");
+            => await _client.GetFromJsonAsync<Resposta<Transaction?>>($"v1/transactions/{request.Id}")
+                ?? new Resposta<Transaction?>(null, 400, "Não foi possivel encontrar as transações.");
 
-        public async Task<Resposta<List<Transaction>?>> GetByPeriod(GetTransactionByPeriodRequest request)
+        public async Task<PagedResponse<List<Transaction>?>> GetByPeriod(GetTransactionByPeriodRequest request)
         {
             const string format = "yyyy-MM-dd";
             var startDate = request.StartDate is not null
@@ -40,7 +40,7 @@ namespace Dima.Web.Handlers
                 ? request.EndDate.Value.ToString(format)
                 : DateTime.Now.GetLastDay().ToString(format);
 
-            var url = $"v1/transaction?startDate={startDate}&endDate={endDate}";
+            var url = $"v1/transactions?startDate={startDate}&endDate={endDate}";
 
             return await _client.GetFromJsonAsync<PagedResponse<List<Transaction>?>>(url)
                 ?? new PagedResponse<List<Transaction>?>(null, 400, "Não foi possivel obter as transações.");

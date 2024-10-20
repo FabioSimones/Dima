@@ -25,7 +25,7 @@ namespace Dima.Api.Endpoints.Transactions
             ITransactionHandler handler,
             [FromQuery] DateTime? startDate = null,
             [FromQuery] DateTime? endDate = null,
-            int pageNumber = 1, 
+            [FromQuery]int pageNumber = 1, 
             [FromQuery] int pageSize = Configuration.DefaultPageSize)
         {
             var request = new GetTransactionByPeriodRequest

@@ -15,7 +15,7 @@ namespace Dima.Core.Handlers
         Task<Resposta<Transaction?>> UpdateAsync(UpdateTransactionRequest request);
         Task<Resposta<Transaction?>> DeleteAsync(DeleteTransactionRequest request);
         Task<Resposta<Transaction?>> GetByIdAsync(GetTransactionByIdRequest request);
-        Task<Resposta<List<Transaction>?>> GetByPeriod(GetTransactionByPeriodRequest request);
+        Task<PagedResponse<List<Transaction>?>> GetByPeriod(GetTransactionByPeriodRequest request);
 
     }
 }
