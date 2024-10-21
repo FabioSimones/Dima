@@ -1,4 +1,5 @@
-﻿using Dima.Api.Data;
+﻿using Azure;
+using Dima.Api.Data;
 using Dima.Api.Response;
 using Dima.Core.Common.Extensions;
 using Dima.Core.Enums;
@@ -46,7 +47,9 @@ namespace Dima.Api.Handlers
 
             try
             {
-                var transaction = await context.Transactions.FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
+                var transaction = await context
+                    .Transactions
+                    .FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
 
                 if (transaction is null)
                     return new Resposta<Transaction?>(null, 404, "Transação não encontrada");
@@ -56,15 +59,15 @@ namespace Dima.Api.Handlers
                 transaction.Title = request.Title;
                 transaction.Type = request.Type;
                 transaction.PaidOrReceivedAt = request.PaidOrReceivedAt;
-                
+
                 context.Transactions.Update(transaction);
                 await context.SaveChangesAsync();
 
                 return new Resposta<Transaction?>(transaction);
             }
-            catch 
+            catch
             {
-                return new Resposta<Transaction?>(null, 500, "Não foi possivel recuperar sua transação.");
+                return new Resposta<Transaction?>(null, 500, "Não foi possível recuperar sua transação");
             }
         }
 
@@ -72,10 +75,13 @@ namespace Dima.Api.Handlers
         {
             try
             {
-                var transaction = await context.Transactions.FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
+                var transaction = await context
+                    .Transactions
+                    .FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId);
 
                 if (transaction is null)
                     return new Resposta<Transaction?>(null, 404, "Transação não encontrada");
+
                 context.Transactions.Remove(transaction);
                 await context.SaveChangesAsync();
 
@@ -83,7 +89,7 @@ namespace Dima.Api.Handlers
             }
             catch
             {
-                return new Resposta<Transaction?>(null, 500, "Não foi possivel recuperar sua transação.");
+                return new Resposta<Transaction?>(null, 500, "Não foi possível recuperar sua transação");
             }
         }
 

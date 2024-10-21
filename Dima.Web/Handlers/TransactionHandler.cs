@@ -20,7 +20,7 @@ namespace Dima.Web.Handlers
 
         public async Task<Resposta<Transaction?>> DeleteAsync(DeleteTransactionRequest request)
         {
-            var result = await _client.DeleteAsync($"v1/transactions{request.Id}");
+            var result = await _client.DeleteAsync($"v1/transactions/{request.Id}");
             return await result.Content.ReadFromJsonAsync<Resposta<Transaction?>>()
                 ?? new Resposta<Transaction?>(null, 400, "Falha ao deletar transação.");
         }
@@ -48,7 +48,7 @@ namespace Dima.Web.Handlers
 
         public async Task<Resposta<Transaction?>> UpdateAsync(UpdateTransactionRequest request)
         {
-            var result = await _client.PutAsJsonAsync($"v1/transactions{request.Id}", request);
+            var result = await _client.PutAsJsonAsync($"v1/transactions/{request.Id}", request);
             return await result.Content.ReadFromJsonAsync<Resposta<Transaction?>>()
                 ?? new Resposta<Transaction?>(null, 400, "Falha ao atualizar transação.");
         }
