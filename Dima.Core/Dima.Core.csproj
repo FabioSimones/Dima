@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Models\Views\vWGetIncomesByCategory.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Models\Views\vwGetIncomesByCategory.sql" />
-  </ItemGroup>
-
 </Project>
